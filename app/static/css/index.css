@@ -1,0 +1,27 @@
+.chat-box {
+  background: transparent;
+  color: white;
+  border-radius: 10px;
+  width: 100%;
+  overflow-y: hidden;
+}
+
+.chat-box:focus {
+  background: transparent;
+
+}
+
+.send-button {
+  color: black;
+  background-color: gray;
+  padding: 3px;
+  border-radius: 5px;
+  line-height: 0;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+.send-button:hover {
+  cursor: pointer;
+}
