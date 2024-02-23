@@ -3,12 +3,23 @@ document.addEventListener('DOMContentLoaded', () => {
   const send_button = document.getElementById('send-button')
 
   chat_box.addEventListener('input', (e) => {
-    if (e.target.value == "") {
+    if (e.target.value.trim() == "") {
       send_button.disabled = true;
     } else {
       send_button.disabled = false;
     }
   })
+
+  document.getElementById('chat-box').addEventListener('keydown', function(event) {
+
+    if (event.key === "Enter") {
+      if (event.shiftKey) {
+      } else {
+        event.preventDefault();
+      }
+    }
+
+  });
 
   const observable = document.getElementById('messages')
 

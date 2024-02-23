@@ -30,7 +30,7 @@
           <div class="grid-x grid-margin-x align-center-middle">
             <div class="medium-6 cell">
               <div style="position: relative;">
-                <textarea id="chat-box" type="text" placeholder="enter a message..." class="chat-box"></textarea>
+                <textarea id="chat-box" type="text" placeholder="enter a message..." class="chat-box" hx-trigger='keydown[target.value.trim().length > 0 && event.key === "Enter"]'  hx-post="/api/chat" hx-vals='js:{"message": get_textarea()}' hx-ext='json-enc' hx-target="#test-dummy" hx-swap="beforebegin" hx-indicator="#button-indicator"></textarea>
                 <button disabled="" id="send-button" class="send-button" hx-trigger="click" hx-post="/api/chat" hx-vals='js:{"message": get_textarea()}' hx-ext='json-enc' hx-target="#test-dummy" hx-swap="beforebegin" hx-indicator="#button-indicator">
                   <span style="" data-state="closed">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-white dark:text-black">
