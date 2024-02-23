@@ -2,27 +2,8 @@
 <html lang="en">
   <head>
     <title>ChatCSI</title>
-    <style>
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-      .overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.55);
-        z-index: 1;
-      }
-      .content {
-        z-index: 2;
-        position: relative;
-      }
-    </style>
     <script src="https://unpkg.com/htmx.org@1.5.0"></script>
+    <script src="https://unpkg.com/htmx.org/dist/ext/json-enc.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.8.1/dist/css/foundation.min.css" crossorigin="anonymous">
     <link rel="stylesheet" href="static/css/index.css">
     <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.8.1/dist/js/foundation.min.js" crossorigin="anonymous"></script>
@@ -35,11 +16,28 @@
         <div class="medium-10 cell" style="color: white;">
             <div class="grid-x grid-margin-x align-center-middle">
               <div class="medium-6 cell">
-                <div class="grid-y grid-margin-y" id="test-dummy">
-                  <div class="medium-6 cell">
-                    <div class="message user-message" >
-                        user: Hello, how are you?
+                <div class="grid-y grid-margin-y" style="background-color: rgba(54, 69, 79, 0.9); padding: 10px;">
+                  <div class="medium-6 cell" id="test-dummy">
+                    <img id="button-indicator" class="htmx-indicator" src="static/images/puff.svg" id="test-dummy">
+                    <!--<div style="background-color: rgba(0, 0, 0, 0.0); margin-bottom: 20px;">
+                      <p style="font-weight: bold; margin-bottom: 0px;">You</p>
+                      <p style="margin-bottom: 0px;">Bacon of hope</p>
                     </div>
+                    <div style="background-color: rgba(0, 0, 0, 0.0); margin-bottom: 40px;">
+                      <p style="font-weight: bold; margin-bottom: 0px;">ChatCSI</p>
+                      <p>Bacon of hope</p>
+                    </div>
+                    <div style="background-color: rgba(0, 0, 0, 0.0)">
+                      <p style="font-weight: bold; margin-bottom: 0px;">You</p>
+                      <p style="margin-bottom: 0px;">Bacon of hope</p>
+                    </div>
+                    <div style="background-color: rgba(0, 0, 0, 0.0)">
+                      <p style="font-weight: bold; margin-bottom: 0px;">You</p>
+                      <p>Bacon of hope</p>
+                    </div>-->
+                    <!-- <div class="message user-message" >
+                        user: Hello, how are you?
+                    </div> -->
                   </div>
                 </div>
               </div>
@@ -50,8 +48,8 @@
           <div class="grid-x grid-margin-x align-center-middle">
             <div class="medium-6 cell">
               <div style="position: relative;">
-                <textarea type="text" placeholder="enter a message..." class="chat-box"></textarea>
-                <button class="send-button" hx-trigger="click" hx-post="/api/hello" hx-target="#test-dummy" hx-swap="afterend">
+                <textarea id="chat-box" type="text" placeholder="enter a message..." hx-trigger="" class="chat-box" hx-post="/api/chat" hx-vals='js:{"message": get_textarea()}' hx-ext='json-enc' hx-target="#test-dummy" hx-swap="afterend"></textarea>
+                <button onclick="" class="send-button" hx-trigger="click" hx-post="/api/chat" hx-vals='js:{"message": get_textarea()}' hx-ext='json-enc' hx-target="#test-dummy" hx-swap="beforebegin" hx-indicator="#button-indicator">
                   <span style="" data-state="closed">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-white dark:text-black">
                       <path d="M7 11L12 6L17 11M12 18V7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -67,6 +65,7 @@
     
     
 
+    <script src="static/js/index.js"></script>
   </body>
 
 
