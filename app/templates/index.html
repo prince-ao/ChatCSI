@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <title>ChatCSI</title>
-    <script src="https://unpkg.com/htmx.org@1.5.0"></script>
+    <script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/htmx.org/dist/ext/json-enc.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.8.1/dist/css/foundation.min.css" crossorigin="anonymous">
     <link rel="stylesheet" href="static/css/index.css">
@@ -17,7 +17,7 @@
           <div class="grid-x grid-margin-x align-center-middle" style="height: 100%;">
             <div class="medium-6 cell" style="height: 100%;">
               <div class="grid-y grid-margin-y" style="padding: 10px; min-height: 100%; background-color: rgba(54, 69, 79, 0.9);">
-                <div class="medium-6 cell">
+                <div class="medium-6 cell" id="messages">
                   <div id="test-dummy" style="margin-top: 20px;"></div>
                   <img id="button-indicator" class="htmx-indicator" src="static/images/puff.svg">
                 </div>
@@ -31,7 +31,7 @@
             <div class="medium-6 cell">
               <div style="position: relative;">
                 <textarea id="chat-box" type="text" placeholder="enter a message..." class="chat-box"></textarea>
-                <button onclick="" class="send-button" hx-trigger="click" hx-post="/api/chat" hx-vals='js:{"message": get_textarea()}' hx-ext='json-enc' hx-target="#test-dummy" hx-swap="beforebegin" hx-indicator="#button-indicator">
+                <button disabled="" id="send-button" class="send-button" hx-trigger="click" hx-post="/api/chat" hx-vals='js:{"message": get_textarea()}' hx-ext='json-enc' hx-target="#test-dummy" hx-swap="beforebegin" hx-indicator="#button-indicator">
                   <span style="" data-state="closed">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-white dark:text-black">
                       <path d="M7 11L12 6L17 11M12 18V7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>

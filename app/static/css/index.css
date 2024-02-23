@@ -27,12 +27,11 @@ html, body {
 
 .chat-box:focus {
   background: transparent;
-
 }
 
 .send-button {
   color: black;
-  background-color: gray;
+  background-color: #979797;
   padding: 3px;
   border-radius: 5px;
   line-height: 0;
@@ -45,7 +44,36 @@ html, body {
   cursor: pointer;
 }
 
-.typing-effect {
+.send-button:disabled {
+  background-color: gray;
+  color: darkgray;
+  cursor: default;
+}
+
+.typing-effect-container {
+  width: max-content; /* Adjust width to fit content */
+  border-right: 2px solid black; /* Cursor */
+  padding-right: 5px; /* Space for cursor */
+  animation: blinkCursor 0.7s step-end infinite;
+}
+
+/*.typing-effect {
+  overflow: hidden;
+  white-space: pre-wrap;
+  max-width: 0;
+  animation: typing 5s steps(40, end) forwards;
+}
+
+@keyframes typing {
+  from { max-width: 0; }
+  to { max-width: 1000px; }
+}
+
+@keyframes blinkCursor {
+  from { border-right-color: black; }
+  to { border-right-color: transparent; }
+}*/
+/*.typing-effect {
   border-right: 2px solid;
   white-space: nowrap;
   overflow: hidden;
@@ -61,4 +89,4 @@ html, body {
 @keyframes blinkCursor {
   from { border-right-color: transparent; }
   to { border-right-color: black; }
-}
+}*/

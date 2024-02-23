@@ -56,9 +56,11 @@ Question: {question}
         )
         result = chain.invoke(message)
 
+        result = result.replace("\n", "<br/>")
+
         response = make_response(f"""<div style="background-color: rgba(0, 0, 0, 0.0); margin-bottom: 40px;">
     <p style="font-weight: bold; margin-bottom: 0px;">ChatCSI</p>
-    <p class="typing-effect">{result}</p>
+    <div class="typewriter">{result}</div>
 </div>""")
         response.headers['Content-Type'] = 'text/html'
 
