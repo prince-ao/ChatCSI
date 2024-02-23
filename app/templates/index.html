@@ -13,42 +13,24 @@
     <div class="grid-container full" style="height: 100%; background-image: url('static/images/csi.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center;">
       <div class="overlay"></div>
       <div class="grid-y grid-margin-y content" style="height: 100%">
-        <div class="medium-10 cell" style="color: white;">
-            <div class="grid-x grid-margin-x align-center-middle">
-              <div class="medium-6 cell">
-                <div class="grid-y grid-margin-y" style="background-color: rgba(54, 69, 79, 0.9); padding: 10px;">
-                  <div class="medium-6 cell" id="test-dummy">
-                    <img id="button-indicator" class="htmx-indicator" src="static/images/puff.svg" id="test-dummy">
-                    <!--<div style="background-color: rgba(0, 0, 0, 0.0); margin-bottom: 20px;">
-                      <p style="font-weight: bold; margin-bottom: 0px;">You</p>
-                      <p style="margin-bottom: 0px;">Bacon of hope</p>
-                    </div>
-                    <div style="background-color: rgba(0, 0, 0, 0.0); margin-bottom: 40px;">
-                      <p style="font-weight: bold; margin-bottom: 0px;">ChatCSI</p>
-                      <p>Bacon of hope</p>
-                    </div>
-                    <div style="background-color: rgba(0, 0, 0, 0.0)">
-                      <p style="font-weight: bold; margin-bottom: 0px;">You</p>
-                      <p style="margin-bottom: 0px;">Bacon of hope</p>
-                    </div>
-                    <div style="background-color: rgba(0, 0, 0, 0.0)">
-                      <p style="font-weight: bold; margin-bottom: 0px;">You</p>
-                      <p>Bacon of hope</p>
-                    </div>-->
-                    <!-- <div class="message user-message" >
-                        user: Hello, how are you?
-                    </div> -->
-                  </div>
+        <div class="medium-10 cell" style="color: white; overflow-y: auto; overflow-x: hidden; ">
+          <div class="grid-x grid-margin-x align-center-middle" style="height: 100%;">
+            <div class="medium-6 cell" style="height: 100%;">
+              <div class="grid-y grid-margin-y" style="padding: 10px; min-height: 100%; background-color: rgba(54, 69, 79, 0.9);">
+                <div class="medium-6 cell">
+                  <div id="test-dummy" style="margin-top: 20px;"></div>
+                  <img id="button-indicator" class="htmx-indicator" src="static/images/puff.svg">
                 </div>
               </div>
             </div>
+          </div>
         </div>
 
         <div class="medium-2 cell" style="color: white;">
           <div class="grid-x grid-margin-x align-center-middle">
             <div class="medium-6 cell">
               <div style="position: relative;">
-                <textarea id="chat-box" type="text" placeholder="enter a message..." hx-trigger="" class="chat-box" hx-post="/api/chat" hx-vals='js:{"message": get_textarea()}' hx-ext='json-enc' hx-target="#test-dummy" hx-swap="afterend"></textarea>
+                <textarea id="chat-box" type="text" placeholder="enter a message..." class="chat-box"></textarea>
                 <button onclick="" class="send-button" hx-trigger="click" hx-post="/api/chat" hx-vals='js:{"message": get_textarea()}' hx-ext='json-enc' hx-target="#test-dummy" hx-swap="beforebegin" hx-indicator="#button-indicator">
                   <span style="" data-state="closed">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-white dark:text-black">

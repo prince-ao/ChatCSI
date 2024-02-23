@@ -45,4 +45,20 @@ html, body {
   cursor: pointer;
 }
 
+.typing-effect {
+  border-right: 2px solid;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+  animation: typing 5s steps(40, end) forwards, blinkCursor 0.5s step-end infinite;
+}
 
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blinkCursor {
+  from { border-right-color: transparent; }
+  to { border-right-color: black; }
+}
