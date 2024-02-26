@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+  <title>ChatCSI</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/htmx.org/dist/ext/json-enc.js"></script>
+  <link href="static/css/output.css" rel="stylesheet">
+</head>
+<body>
+    <main class="bg-no-repeat bg-cover h-screen" style="background-image: url('static/images/csi.jpg')">
+      <nav class="bg-white w-screen h-[80px] flex items-center">
+        <img src="static/images/csi-logo.jpg" class="h-[60px] ms-[10px]" >
+        <h1 class="font-bold text-2xl ms-2 text-[#76c3ed]">{% block content %}{% endblock %}</h1>
+      </nav>
+      <div class="flex flex-col h-main">
+        <div class="h-[80%] flex justify-center">
+          <div id="messages" class="h-full w-1/2 bg-black/[.8] rounded-xl text-white p-[10px] overflow-y-auto">
+            <div id="chat-box" style="margin-top: 20px;"></div>
+            <img id="button-indicator" class="htmx-indicator" src="static/images/puff.svg">
+          </div>
+        </div>
+        <div class="h-[20%] relative flex items-center justify-center">
+          <textarea 
+            id="input-box" 
+            class="bg-transparent relative text-white rounded-lg overflow-y-hidden resize-none h-[50px] border-2 border-white ps-2 pt-1 w-1/2 focus:outline-none" 
+            type="text" 
+            placeholder="enter a message..." 
+            hx-trigger='keydown[target.value.trim().length > 0 && event.key === "Enter"]'
+            hx-post="{{ chat_url }}" 
+            hx-vals='js:{"message": get_textarea()}' 
+            hx-ext='json-enc' 
+            hx-target="#chat-box" 
+            hx-swap="beforebegin" 
+            hx-indicator="#button-indicator"
+          ></textarea>
+          <button 
+            disabled
+            id="send-button" 
+            class="text-black bg-slate-100 rounded-lg relative right-[40px] p-[3px] hover:cursor-pointer disabled:bg-slate-500 disabled:cursor-auto" 
+            hx-trigger="click" 
+            hx-post="{{ chat_url }}" 
+            hx-vals='js:{"message": get_textarea()}' 
+            hx-ext='json-enc' 
+            hx-target="#chat-box"
+            hx-swap="beforebegin"
+            hx-indicator="#button-indicator">
+            <span style="" data-state="closed">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="">
+                <path d="M7 11L12 6L17 11M12 18V7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+            </span>
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <script src="static/js/index.js"></script>
+</body>
+</html>

@@ -1,5 +1,6 @@
 from dotenv import load_dotenv
-from langchain_openai import OpenAIEmbeddings
+# from langchain_openai import OpenAIEmbeddings
+from langchain_community.embeddings.spacy_embeddings import SpacyEmbeddings
 from langchain_community.vectorstores import Milvus
 
 # TODO: Convert the embeddings to to spacy
@@ -8,10 +9,10 @@ from langchain_community.vectorstores import Milvus
 
 load_dotenv()
 
-embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
+embeddings = SpacyEmbeddings(model_name="en_core_web_sm")
 
 milvus_client = Milvus(embedding_function=embeddings,
-                       collection_name='chatcsi_demo_1',
+                       collection_name='chatcsi_demo_3',
                        collection_description="chatcsi demo collection",
                        auto_id=True,
                        connection_args={

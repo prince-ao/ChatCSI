@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const chat_box = document.getElementById("input-box");
+  const chat_box = document.getElementById("chat-box");
   const send_button = document.getElementById('send-button')
 
   chat_box.addEventListener('input', (e) => {
@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   })
 
-  document.getElementById('input-box').addEventListener('keydown', function(event) {
+  document.getElementById('chat-box').addEventListener('keydown', function(event) {
 
     if (event.key === "Enter") {
       if (event.shiftKey) {
@@ -40,8 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const text = pnode.innerHTML
             pnode.innerHTML = ''
             typewriterEffect(newNode.children[1], text, 10);
-
-            observable.scrollTo(0, observable.scrollHeight + 10)
           }
         });
       }
@@ -55,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 function get_textarea() {
-  const textarea = document.getElementById("input-box")
+  const textarea = document.getElementById("chat-box")
   const value = textarea.value
 
   add_user_input(value)
@@ -66,11 +64,11 @@ function get_textarea() {
 }
 
 function add_user_input(message) {
-  const holder = document.getElementById("chat-box")
+  const holder = document.getElementById("test-dummy")
 
   holder.insertAdjacentHTML('beforebegin', `<div style="background-color: rgba(0, 0, 0, 0.0); margin-bottom: 20px;">
-    <p class="font-bold mb-[0px]">You</p>
-    <p class="mb-[0px]">${message}</p>
+    <p style="font-weight: bold; margin-bottom: 0px;">You</p>
+    <p style="margin-bottom: 0px;">${message}</p>
 </div>`)
 
 
@@ -97,5 +95,4 @@ function typewriterEffect(element, text, delay) {
     }
   }
   typeWriter();
-
 }

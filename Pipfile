@@ -16,6 +16,7 @@ langchain-openai = "*"
 python-dotenv = "*"
 pymilvus = "*"
 lxml = "*"
+spacy = "*"
 
 [dev-packages]
 
