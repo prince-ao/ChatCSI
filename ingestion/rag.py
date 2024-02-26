@@ -11,16 +11,34 @@ load_dotenv()
 
 embeddings = SpacyEmbeddings(model_name="en_core_web_sm")
 
-milvus_client = Milvus(embedding_function=embeddings,
-                       collection_name='chatcsi_demo_3',
-                       collection_description="chatcsi demo collection",
-                       auto_id=True,
-                       connection_args={
-                           "address": "localhost:19530",
-                       }
-                       )
+milvus_client_csi = Milvus(embedding_function=embeddings,
+                           collection_name='chatcsi_demo_3',
+                           collection_description="chatcsi demo collection",
+                           auto_id=True,
+                           connection_args={
+                               "address": "localhost:19530",
+                           }
+                           )
 
-retriever = milvus_client.as_retriever(
+milvus_client_admissions = Milvus(embedding_function=embeddings,
+                                  collection_name='chatcsi_admissions_demo_1',
+                                  collection_description="admissions",
+                                  auto_id=True,
+                                  connection_args={
+                                      "address": "localhost:19530",
+                                  }
+                                  )
+
+
+csi_retriever = milvus_client_csi.as_retriever(
+    search_type="mmr",
+    search_kwargs={
+        'k': 8,
+        'fetch_k': 30
+    }
+)
+
+admissions_retriever = milvus_client_admissions.as_retriever(
     search_type="mmr",
     search_kwargs={
         'k': 8,

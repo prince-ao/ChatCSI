@@ -5,7 +5,8 @@ import math
 from multiprocessing import Pool
 from bs4 import BeautifulSoup
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from rag import milvus_client
+from rag import milvus_client_csi
+# from rag import milvus_client_admissions
 
 
 def add_link_to_vectordb(link):
@@ -28,6 +29,8 @@ def spawn_processes():
     for url in csi_sitemap_urls:
         print(f'- indexing sitemap: {url}...')
         links = get_html_sitemap(url)
+
+        # links = [link for link in links if "admissions" in link.lower()]
 
         with Pool(math.ceil(os.cpu_count() * .80)) as pool:
             pool.map(add_link_to_vectordb, links)
@@ -77,9 +80,15 @@ def clean_string(input_string):
 
 
 def insert_embedding(text, path):
-    milvus_client.add_texts(
+    milvus_client_csi.add_texts(
         texts=[text.page_content], metadatas=[{"path": path}]
     )
+
+
+# def insert_embeddings(text, path):
+    # milvus_client_admissions.add_texts(
+    # texts=[text.page_content], metadatas=[{"path": path}]
+    # )
 
 
 def add_html_to_vectordb(content, path):
